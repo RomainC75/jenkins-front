@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "test": "jest --json --outputFile=jest-output.json",
+    "test": "jest --ci --reporters=default --reporters=jest-junit",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
@@ -35,5 +35,15 @@
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"
+  },
+  "jest-junit": {
+    "suiteName": "jest tests",
+    "outputDirectory": "jest-results",
+    "outputName": "junit.xml",
+    "uniqueOutputName": "false",
+    "classNameTemplate": "{classname}-{title}",
+    "titleTemplate": "{classname}-{title}",
+    "ancestorSeparator": " › ",
+    "usePathForSuiteName": "true"
   }
 }

@@ -9,4 +9,5 @@ export default {
         '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/src/test/__ mocks __/fileMock.js',
         "\\.(css|less)$": "<rootDir>/src/test/__ mocks __/styleMock.js",
     },
+    "reporters": [ "default", "jest-junit" ]
 }
