@@ -50,18 +50,34 @@ pipeline {
                 stage('E2E') {
                     agent {
                         docker {
-                            image 'mcr.microsoft.com/playwright:v1.39.0-jammy'
+                            image 'cypress/base:20.17.0'
+                            args '-p 3000:3000' 
                             reuseNode true
                         }
                     }
                     steps {
-                        sh '''
-                            npm install serve
-                            node_modules/.bin/serve -s build &
-                            sleep 10
-                            
-                            npx playwright test --reporter=html
-                        '''
+                        stage('install dependencies for Cypress'){
+                            steps {
+                                sh 'npm ci'
+                                sh 'npm run cy:verify'
+                            }
+                        }
+                        stage('Build') { 
+                            steps {
+                                sh 'npm run build'
+                            }
+                        }
+                        stage('Test') { 
+                            steps {
+                                sh '''
+                                    npm install serve
+                                    node_modules/.bin/serve -s build &
+                                    sleep 10
+                                    
+                                '''
+                                sh 'npm run ci:cy-run'
+                            }
+                        }
                     }
                     post{
                         always {
