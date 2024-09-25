@@ -65,7 +65,7 @@ pipeline {
                             sleep 10
                             
                         '''
-                        sh 'npm run ci:cy-run'
+                        sh 'npm run cy:run'
                     }
                     post{
                         always {
