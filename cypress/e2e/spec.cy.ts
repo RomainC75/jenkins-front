@@ -2,7 +2,7 @@
 
 describe('Home Page Interactions', () => {
   it('should open the modal on button click', () => {
-    cy.visit('http://localhost:5174');
+    cy.visit('http://localhost:3000');
 
     cy.contains('Open Modal').click();
     cy.get('.modal').should('be.visible');
