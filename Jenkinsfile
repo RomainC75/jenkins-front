@@ -56,20 +56,16 @@ pipeline {
                         }
                     }
                     steps {
-                        stage('install dependencies for Cypress'){
-                            steps {
-                                sh 'npm ci'
-                                sh 'npm run cy:verify'
-                                sh 'npm run build'
-                                sh '''
-                                    npm install serve
-                                    node_modules/.bin/serve -s build &
-                                    sleep 10
-                                    
-                                '''
-                                sh 'npm run ci:cy-run'
-                            }
-                        }
+                        sh 'npm ci'
+                        sh 'npm run cy:verify'
+                        sh 'npm run build'
+                        sh '''
+                            npm install serve
+                            node_modules/.bin/serve -s build &
+                            sleep 10
+                            
+                        '''
+                        sh 'npm run ci:cy-run'
                     }
                     post{
                         always {
