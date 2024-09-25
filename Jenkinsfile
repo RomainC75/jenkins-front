@@ -60,15 +60,7 @@ pipeline {
                             steps {
                                 sh 'npm ci'
                                 sh 'npm run cy:verify'
-                            }
-                        }
-                        stage('Build') { 
-                            steps {
                                 sh 'npm run build'
-                            }
-                        }
-                        stage('Test') { 
-                            steps {
                                 sh '''
                                     npm install serve
                                     node_modules/.bin/serve -s build &
