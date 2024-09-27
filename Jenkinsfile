@@ -63,7 +63,9 @@ pipeline {
                             npm install serve
                             node_modules/.bin/serve -s dist &
                             sleep 10
-                            
+                            npm install node-wget
+                            echo "====================================================="
+                            node_modules/.bin/wget http://localhost:3000
                         '''
                         sh 'npm run cy:run'
                     }
