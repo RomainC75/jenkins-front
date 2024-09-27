@@ -61,7 +61,7 @@ pipeline {
                         sh 'npm run build'
                         sh '''
                             npm install serve
-                            node_modules/.bin/serve -s build &
+                            node_modules/.bin/serve -s dist &
                             sleep 10
                             
                         '''
