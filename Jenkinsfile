@@ -65,7 +65,7 @@ pipeline {
                             sleep 10
                             npm install node-wget
                             echo "====================================================="
-                            node_modules/.bin/wget http://localhost:3000
+                            node_modules/.bin/wget http://localhost:3000 -d downloaded
                         '''
                         sh 'npm run cy:run'
                     }
