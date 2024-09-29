@@ -16,6 +16,7 @@ pipeline {
                     node --version
                     npm --version
                     
+                    
                     # ci : especially designed for ci 
                     npm ci
                     npm run build
@@ -23,6 +24,9 @@ pipeline {
                 '''
             }
         }
+
+        
+        
         
         
         stage('Run Tests'){
@@ -37,6 +41,9 @@ pipeline {
                     }
                     steps {
                         sh '''
+                            echo "unit test "
+                            ls -a 
+                            pwd
                             test -f dist/index.html
                             npm run test
                         '''
@@ -51,7 +58,7 @@ pipeline {
                     agent {
                         docker {
                             image 'cypress/base:20.17.0'
-                            args '-p 3000:3000' 
+                            args '-p 3000:3000' d
                             reuseNode true
                         }
                     }
