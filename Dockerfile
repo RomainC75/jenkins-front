@@ -13,4 +13,5 @@ COPY ./cypress ./cypress
 
 RUN npm i
 
+
 ENTRYPOINT ["npx","cypress","run"]
