@@ -1,17 +1,18 @@
-FROM cypress/factory
+FROM node:20-alpine
 
-ARG NODE_VERSION='18.17.1'
-ARG CHROME_VERSION='113.0.5672.92-1'
-ARG EDGE_VERSION='113.0.1774.42-1'
-ARG FIREFOX_VERSION='113.0'
+WORKDIR /app
 
-WORKDIR /TESTS
+COPY package.json .
 
-COPY ./package.json .
-COPY ./cypress.config.ts .
-COPY ./cypress ./cypress
+RUN npm install
 
-RUN npm i
+COPY . .
 
+# RUN npm run build
 
-ENTRYPOINT ["npx","cypress","run"]
+# RUN npm i -g serve
+
+EXPOSE 3000
+
+# CMD [ "serve", "-s", "dist" ]
+CMD ["npm", "run", "dev"]
