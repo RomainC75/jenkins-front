@@ -32,12 +32,6 @@ pipeline {
         }
 
         stage ('Build Docker image') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
                 script {
                 sh "docker build -t ${REGISTRY_NAME}.azurecr.io/${REPOSITORY_NAME}:$BUILD_NUMBER ." 
@@ -46,12 +40,6 @@ pipeline {
         }
 
         stage ('Upload Image to ACR') {
-            agent {
-                docker {
-                    image 'node:18-alpine'
-                    reuseNode true
-                }
-            }
             steps {
                 script {
                 withCredentials([usernamePassword(credentialsId: 'az acr gmail', usernameVariable: 'SERVICE_PRINCIPAL_ID', passwordVariable: 'SERVICE_PRINCIPAL_PASSWORD')]) {
